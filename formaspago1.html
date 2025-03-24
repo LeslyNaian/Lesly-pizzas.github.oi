@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formas de Pago</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f8f4e1;
+            color: #333;
+        }
+        .container {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            display: inline-block;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #d43f3a;
+        }
+        .hidden {
+            display: none;
+        }
+        .button {
+            background-color: #d43f3a;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .button:hover {
+            background-color: #b3302d;
+            transform: scale(1.05);
+        }
+        .options {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Formas de Pago</h1>
+        <p id="totalAmount"></p>
+
+        <div class="options">
+            <label>
+                <input type="radio" name="paymentMethod" value="tarjeta" onclick="mostrarOpciones()"> Pago con Tarjeta
+            </label>
+        </div>
+
+        <div id="tarjetaOpciones" class="hidden">
+            <h3>Seleccione su Tarjeta</h3>
+            <label>
+                <input type="radio" name="cardType" value="Visa"> Visa
+            </label>
+            <br>
+            <label>
+                <input type="radio" name="cardType" value="MasterCard"> MasterCard
+            </label>
+            <br>
+            <label>
+                <input type="radio" name="cardType" value="American Express"> American Express
+            </label>
+        </div>
+
+        <button class="button" id="confirmButton" onclick="finalizar()">Pagar Ahora</button>
+    </div>
+
+    <script>
+        // Obtener los parámetros de la URL
+        const params = new URLSearchParams(window.location.search);
+        const total = params.get('total');
+        const pizzaSize = params.get('pizzaSize');
+        const pizzaType = params.get('pizzaType');
+        const extras = params.get('extras');
+        document.getElementById('totalAmount').textContent = `El total a pagar es: $${total}`;
+
+        const tarjetaOpciones = document.getElementById('tarjetaOpciones');
+
+        function mostrarOpciones() {
+            tarjetaOpciones.classList.remove('hidden');
+        }
+
+        function finalizar() {
+            const metodoPago = document.querySelector('input[name="paymentMethod"]:checked');
+            if (!metodoPago) {
+                alert('Por favor, seleccione una forma de pago.');
+                return;
+            }
+
+            const tipoTarjeta = document.querySelector('input[name="cardType"]:checked');
+            if (!tipoTarjeta) {
+                alert('Por favor, seleccione un tipo de tarjeta.');
+                return;
+            }
+
+            // Redirigir a tarjeta.html con todos los datos necesarios
+            window.location.href = `Trajeta1.html?total=${total}&pizzaSize=${pizzaSize}&pizzaType=${pizzaType}&extras=${extras}&paymentMethod=Tarjeta&cardType=${tipoTarjeta.value}`;
+        }
+    </script>
+</body>
+</html>

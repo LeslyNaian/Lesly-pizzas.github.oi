@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago con Tarjeta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f8f4e1;
+            color: #333;
+        }
+        .container {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            display: inline-block;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #d43f3a;
+        }
+        .button {
+            background-color: #d43f3a;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .button:hover {
+            background-color: #b3302d;
+        }
+        input[type="password"] {
+            padding: 8px;
+            margin-top: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pago con Tarjeta</h1>
+        <div>
+            <p id="cardName"></p>
+            <p id="totalAmount"></p>
+        </div>
+        <div>
+            <label for="nip">Ingrese su NIP:</label>
+            <input type="password" id="nip" maxlength="4" required>
+        </div>
+        <button class="button" onclick="redireccionar()">Finalizar Compra</button>
+    </div>
+
+    <script>
+        // Obtener los parámetros desde la URL
+        const params = new URLSearchParams(window.location.search);
+        const total = params.get('total');
+        const pizzaSize = params.get('pizzaSize'); // Tamaño de la pizza
+        const pizzaType = params.get('pizzaType'); // Tipo de pizza seleccionada
+        const extras = params.get('extras'); // Complementos seleccionados separados por coma
+        const cardType = params.get('cardType'); // Tipo de tarjeta
+
+        // Mostrar la información relevante
+        document.getElementById('cardName').textContent = `Tarjeta seleccionada: ${cardType}`;
+        document.getElementById('totalAmount').textContent = `Total a pagar: $${total}`;
+
+        function redireccionar() {
+            const nip = document.getElementById('nip').value;
+            if (!nip || nip.length !== 4) {
+                alert('Por favor, ingrese un NIP válido de 4 dígitos.');
+                return;
+            }
+
+            // Redirigir directamente a final.html con todos los datos necesarios
+            const queryParams = `total=${total}&pizzaSize=${pizzaSize}&pizzaType=${pizzaType}&extras=${extras}&cardType=${cardType}`;
+            window.location.href = `final1.html?${queryParams}`;
+        }
+    </script>
+</body>
+</html>

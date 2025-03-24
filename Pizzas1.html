@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de Pizzas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f4e1;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #d43f3a;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .button {
+            background-color: #d43f3a;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 10px auto;
+            width: 50%;
+        }
+        .button:hover {
+            background-color: #b3302d;
+        }
+        .total {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pedido de Pizzas</h1>
+    <div class="container">
+        <form id="pizzaForm">
+            <h2>Selecciona el Tamaño de tu Pizza</h2>
+            <div>
+                <input type="radio" id="pequeña" name="pizzaSize" value="100">
+                <label for="pequeña">Pizza Pequeña - $100</label>
+            </div>
+            <div>
+                <input type="radio" id="mediana" name="pizzaSize" value="150">
+                <label for="mediana">Pizza Mediana - $150</label>
+            </div>
+            <div>
+                <input type="radio" id="grande" name="pizzaSize" value="200">
+                <label for="grande">Pizza Grande - $200</label>
+            </div>
+
+            <h2>Selecciona el Tipo de Pizza</h2>
+            <div>
+                <input type="radio" id="hawaiana" name="pizzaType" value="Hawaiana">
+                <label for="hawaiana">Hawaiana</label>
+            </div>
+            <div>
+                <input type="radio" id="peperoni" name="pizzaType" value="Peperoni">
+                <label for="peperoni">Peperoni</label>
+            </div>
+            <div>
+                <input type="radio" id="mexicana" name="pizzaType" value="Mexicana">
+                <label for="mexicana">Mexicana</label>
+            </div>
+
+            <h2>Extras</h2>
+            <div>
+                <input type="checkbox" id="alitas" name="extra" value="55">
+                <label for="alitas">Alitas - $55</label>
+            </div>
+            <div>
+                <input type="checkbox" id="refresco" name="extra" value="15">
+                <label for="refresco">Refresco - $15</label>
+            </div>
+            <div>
+                <input type="checkbox" id="papas" name="extra" value="35">
+                <label for="papas">Papas Fritas - $35</label>
+            </div>
+
+            <div class="total" id="total"></div>
+            <button type="button" class="button" id="confirmButton">Confirmar Pedido</button>
+        </form>
+    </div>
+
+    <script>
+        let total = 0;
+
+        const form = document.getElementById('pizzaForm');
+        const confirmButton = document.getElementById('confirmButton');
+
+        form.addEventListener('change', function () {
+            total = 0;
+
+            // Calcular el total
+            const pizzaSize = document.querySelector('input[name="pizzaSize"]:checked');
+            const extras = document.querySelectorAll('input[name="extra"]:checked');
+
+            if (pizzaSize) total += parseInt(pizzaSize.value);
+
+            extras.forEach(extra => {
+                total += parseInt(extra.value);
+            });
+
+            document.getElementById('total').textContent = `El total es: $${total}`;
+        });
+
+        confirmButton.addEventListener('click', function () {
+            const pizzaSize = document.querySelector('input[name="pizzaSize"]:checked');
+            const pizzaType = document.querySelector('input[name="pizzaType"]:checked');
+            const extras = document.querySelectorAll('input[name="extra"]:checked');
+
+            if (!pizzaSize || !pizzaType) {
+                alert('Por favor, selecciona el tamaño y tipo de pizza.');
+                return;
+            }
+
+            let extrasList = Array.from(extras).map(extra => extra.nextElementSibling.textContent.trim()).join(', ');
+
+            // Redirigir a formaspago.html con todos los parámetros seleccionados
+            const queryParams = `?total=${total}&pizzaSize=${pizzaSize.nextElementSibling.textContent}&pizzaType=${pizzaType.value}&extras=${extrasList}`;
+            window.location.href = `formaspago1.html${queryParams}`;
+        });
+    </script>
+</body>
+</html>
