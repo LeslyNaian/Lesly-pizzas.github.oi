@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Verde</title>
+    <style>
+        body {
+            background-image: url('plantas.jpg'); 
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .formulario {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        input, textarea, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input, textarea {
+            background-color: #d4edda;
+            border: 1px solid #28a745;
+            color: #155724;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+            flex: 1;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .back-btn {
+            background-color: #dc3545;
+        }
+
+        .back-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="formulario">
+        <h2>COMENTARIOS</h2>
+        <form action="https://formspree.io/f/mjkweqgz" method="POST">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="email" name="email" placeholder="Correo electrónico" required>
+            <textarea name="comentario" placeholder="Escribe tu comentario aquí..." required></textarea>
+            <div class="btn-container">
+                <button type="submit">Enviar</button>
+                <button type="button" class="back-btn" onclick="history.back()">Atrás</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
