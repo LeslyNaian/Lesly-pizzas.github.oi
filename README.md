@@ -12,7 +12,6 @@
             padding: 0;
             scroll-behavior: smooth;
         }
-
         .container {
             text-align: center;
             background: rgba(255, 255, 255, 0.8);
@@ -22,18 +21,15 @@
             margin: 50px auto;
             width: 80%;
         }
-
         h1 {
             color: #444;
         }
-
         .buttons {
             margin-top: 20px;
             display: flex;
             justify-content: center;
             gap: 20px;
         }
-
         .btn {
             display: inline-block;
             padding: 15px 40px;
@@ -46,20 +42,16 @@
             position: relative;
             overflow: hidden;
         }
-
         .pizza {
             background: #e63946;
         }
-
         .pots {
             background: #2a9d8f;
         }
-
         .btn:hover {
             transform: scale(1.1);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
-
         section {
             padding: 50px;
             background: #fff;
@@ -75,7 +67,7 @@
         <h1>Bienvenido</h1>
         <p>Selecciona una opción:</p>
         <div class="buttons">
-            <a href="portada.html" class="btn pizza">Pizzería 🍕</a>
+            <a href="Portada.html" class="btn pizza">Pizzería 🍕</a>
             <a href="Macetas.html" class="btn pots">Macetas 🪴</a>
         </div>
     </div>
