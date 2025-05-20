@@ -72,14 +72,13 @@
     </div>
 
     <script>
-        // Obtener parámetros desde la URL
+    
         const params = new URLSearchParams(window.location.search);
         const total = params.get('total');
-        const pizzaSize = params.get('pizzaSize'); // Tamaño de la pizza
-        const pizzaType = params.get('pizzaType'); // Tipo de pizza seleccionada
-        const extras = params.get('extras'); // Complementos seleccionados separados por coma
-
-        // Generar ticket en forma de listas
+        const pizzaSize = params.get('pizzaSize'); 
+        const pizzaType = params.get('pizzaType'); 
+        const extras = params.get('extras'); 
+    
         const ticketDiv = document.getElementById('purchaseTicket');
         ticketDiv.innerHTML = `
             <ul>
@@ -96,7 +95,7 @@
         `;
 
         function finalizar() {
-            window.location.href = "Pizzería.html"; // Cambia esto a tu página principal
+            window.location.href = "index.html"; 
         }
     </script>
 </body>
