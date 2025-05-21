@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras - IDYMAN</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -48,23 +48,24 @@
             margin: 20px auto;
             color: black;
         }
+
         button {
-    background: linear-gradient(to right, #2E8B57, #3CB371);
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
+            background: linear-gradient(to right, #2E8B57, #3CB371);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
 
-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(46, 139, 87, 0.8);
-}
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(46, 139, 87, 0.8);
+        }
 
-        .delete-btn, .clear-cart, .pay-cart, .download-pdf {
+        .delete-btn, .pay-cart, .download-pdf {
             background-color: #2E8B57;
             color: white;
             padding: 10px;
@@ -94,10 +95,9 @@ button:hover {
 <body>
 
     <div class="header">
-        <br>
         <h1>🛒 Carrito de Compras</h1>
         <div class="nav">
-            <a href="Principal .html">Volver a la tienda</a>
+            <a href="Principal.html">Volver a la tienda</a>
             <a href="comentarios.html">Comentarios</a>
         </div>
     </div>
@@ -106,13 +106,12 @@ button:hover {
         <h2>Tu selección de macetas</h2>
         <div id="cart-items"></div>
         <p id="cart-total"></p>
-          <button onclick="location.href='index.html'">Principal</button>
-      <button onclick="checkout()" class="pay-cart">Proceder al Pago</button>
+        <button onclick="location.href='index.html'">Principal</button>
+        <button onclick="checkout()" class="pay-cart">Proceder al Pago</button>
         <button onclick="generatePDF()" class="download-pdf">Descargar PDF</button>
 
         <div id="loading-container">
             <div class="loading-circle"></div>
-            
         </div>
     </div>
 
@@ -150,13 +149,6 @@ button:hover {
             location.reload();
         }
 
-        function clearCart() {
-            if (confirm("¿Seguro que deseas vaciar el carrito?")) {
-                localStorage.removeItem("cart");
-                location.reload();
-            }
-        }
-
         function checkout() {
             document.getElementById("loading-container").style.display = "block";
 
@@ -170,6 +162,9 @@ button:hover {
 
         function generatePDF() {
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
             let content = "🛒 Información del Carrito de Compras\n\n";
 
             if (cart.length === 0) {
@@ -184,10 +179,10 @@ button:hover {
 
                 content += `Total: MXN$${cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}\n`;
             }
-            let blob = new Blob([content], { type: "application/pdf" });
-            saveAs(blob, "Carrito_IDYMAN.pdf");
+
+            doc.text(content, 10, 10);
+            doc.save("Carrito_IDYMAN.pdf");
         }
     </script>
-
 </body>
 </html>
