@@ -11,58 +11,49 @@
             text-align: center;
             padding: 50px;
         }
-        
-        @import url(https://use.fontawesome.com/releases/v6.4.2/css/all.css);
-        
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+        .contact-container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            display: inline-block;
         }
-        
-        a {
-            border-radius: 50%;
-            box-sizing: border-box;
-            width: 100px;
-            height: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text;
-            transition: 0.5s;
-            color: var(--color);
-            font-size: 2.5em;
-            background: rgba(0, 0, 0, 0);
-            -webkit-box-reflect: below 5px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
-        }
-        
-        a:hover {
-            background: var(--color);
-            color: #050801;
-            box-shadow: 0 0 5px var(--color),
-                        0 0 25px var(--color),
-                        0 0 50px var(--color),
-                        0 0 200px var(--color);
-        }
-
         h2 {
             color: #2c6e49;
+        }
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+        .contact-info {
+            margin-top: 20px;
+        }
+        .contact-info a {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #2c6e49;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .contact-info a:hover {
+            background-color: #1b4630;
         }
     </style>
 </head>
 <body>
-    <h2>Contacto IDYMAN</h2>
-    
-    <div class="social-icons">
-        <a href="https://www.instagram.com/idyman.artesanias?igsh=NjVucHM2cmJxZmN2" style="--color: #E1306C">
-            <i class="fa-brands fa-instagram"></i>
-        </a>
-        <a href="https://www.facebook.com/share/12J93rGvBBC/" style="--color: #426782">
-            <i class="fa-brands fa-facebook-f"></i>
-        </a>
-        <a href="https://wa.me/7791161821" style="--color: #25D366">
-            <i class="fa-brands fa-whatsapp"></i>
-        </a>
+    <div class="contact-container">
+        <h2>Contacto IDYMAN</h2>
+        <p>¿Tienes dudas o deseas más información sobre nuestras macetas?</p>
+        <div class="contact-info">
+            <p>📞 <strong>Asesor:</strong> 55 47 11 57 97</p>
+            <a href="https://wa.me/5547115797?text=Hola%20quiero%20más%20información%20sobre%20las%20macetas%20IDYMAN" target="_blank">Enviar mensaje por WhatsApp</a>
+            <br><br>
+            <a href="https://www.facebook.com/share/12J93rGvBBC/" target="_blank">Visitar Facebook</a>
+            <br><br>
+            <a href="https://www.instagram.com/idyman.artesanias?igsh=NjVucHM2cmJxZmN2" target="_blank">Visitar Instagram</a>
+        </div>
     </div>
-</body>
-</html>
