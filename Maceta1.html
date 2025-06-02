@@ -117,16 +117,17 @@
     </style>
 </head>
 <body>
-    <header id="header">
-        <br>
-        <h1>Sonoras</h1>
-        <div class="nav">
-            <button onclick="history.back()" class="back-button">⬅</button>
-            <a href="contacto.html">Contacto</a> 
-            <a href="comentarios.html">Comentarios</a>
-        </div>
-    </header>
-
+   <header id="header">
+    <h1>CILINDROS</h1>
+    <div class="nav">
+        <button onclick="history.back()" class="back-button">⬅</button>
+        <a href="contacto.html">Contacto</a> 
+        <a href="comentarios.html">Comentarios</a>
+        <a href="carrito.html" class="cart-link">
+            🛒 <span id="cart-count">0</span>
+        </a>
+    </div>
+   </header>
     <div class="image-container">
         <h2>Vista de las macetas</h2>
         <img id="product-image" src="negro.png" alt="Maceta">
@@ -151,56 +152,59 @@
         
         <button id="add-to-cart" class="cart-btn">Agregar al carrito</button>
     </div>
+<script>
+let selectedSize = "";
+let selectedColor = "";
 
-    <script>
-        let selectedSize = "";
-        let selectedColor = "";
+// Manejo de selección de tamaño
+document.querySelectorAll(".size-option").forEach(option => {
+    option.addEventListener("click", () => {
+        document.querySelectorAll(".size-option").forEach(opt => opt.classList.remove("selected"));
+        option.classList.add("selected");
+        selectedSize = option.textContent;
+    });
+});
 
-        const colorImages = {
+// Manejo de selección de color
+document.querySelectorAll(".color-option").forEach(option => {
+    option.addEventListener("click", () => {
+        document.querySelectorAll(".color-option").forEach(opt => opt.classList.remove("selected"));
+        option.classList.add("selected");
+        selectedColor = option.textContent.trim();
+
+        let imageMap = {
             "Negro": "negro.png",
             "Chocolate": "cafe.png",
             "Gris Oxford": "gris.png",
-            "Blanco": "blanco.png",
-            "Rojo": "rojo.png"
+            "Blanco": "blanco.png"
+            "rojo": "rojo.png"
         };
 
-        document.querySelectorAll(".size-option").forEach(option => {
-            option.addEventListener("click", () => {
-                document.querySelectorAll(".size-option").forEach(opt => opt.classList.remove("selected"));
-                option.classList.add("selected");
-                selectedSize = option.textContent;
-            });
-        });
+        document.querySelector(".image-container img").src = imageMap[selectedColor];
+    });
+});
 
-        document.querySelectorAll(".color-option").forEach(option => {
-            option.addEventListener("click", () => {
-                document.querySelectorAll(".color-option").forEach(opt => opt.classList.remove("selected"));
-                option.classList.add("selected");
+document.getElementById("add-to-cart").addEventListener("click", () => {
+    if (!selectedSize || !selectedColor) {
+        alert("Por favor, selecciona tamaño y color.");
+        return;
+    }
 
-                selectedColor = option.innerText.trim();
-                const newImageSrc = colorImages[selectedColor];
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name: "Maceta Cilindro", size: selectedSize, color: selectedColor, price: 450, quantity: 1 });
+    localStorage.setItem("cart", JSON.stringify(cart));
 
-                if (newImageSrc) {
-                    document.getElementById("product-image").src = newImageSrc;
-                } else {
-                    document.getElementById("product-image").src = "Maceta2.png"; // Imagen por defecto
-                }
-            });
-        });
+    alert("Producto agregado al carrito.");
+    
 
-        document.getElementById("add-to-cart").addEventListener("click", () => {
-            if (!selectedSize || !selectedColor) {
-                alert("Por favor, selecciona tamaño y color.");
-                return;
-            }
+    updateCartCount();
+});
+function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cart-count").textContent = cart.length;
+}
+updateCartCount();
+            </script>
 
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cart.push({ name: "Maceta Sonora", size: selectedSize, color: selectedColor, price: 350, quantity: 1 });
-            localStorage.setItem("cart", JSON.stringify(cart));
-
-            alert("Producto agregado al carrito.");
-            window.location.href = "carrito.html";
-        });
-    </script>
 </body>
 </html>
