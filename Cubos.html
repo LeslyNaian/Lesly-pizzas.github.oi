@@ -6,30 +6,30 @@
     <title>Cubos - Macetas de Fibra de Vidrio</title>
     <style>
         body {
-    font-family: Arial, sans-serif;
-    background: url('7f222312b94457464ec0bf446fcad1ec.jpg') no-repeat center center fixed;
-    background-size: 100% 100%;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
+            font-family: Arial, sans-serif;
+            background: url('7f222312b94457464ec0bf446fcad1ec.jpg') no-repeat center center fixed;
+            background-size: 100% 100%;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
 
-/* Contenedor para imágenes */
-.image-container {
-    width: 80%;
-    margin: 20px auto;
-    text-align: center;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-}
+        /* Contenedor para imágenes */
+        .image-container {
+            width: 80%;
+            margin: 20px auto;
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
 
-.image-container img {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    border-radius: 10px;
-}
+        .image-container img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 10px;
+        }
 
         .back-button {
             background: none;
@@ -77,7 +77,6 @@
             transition: color 0.3s;
         }
 
-
         .size-option, .color-option {
             padding: 10px;
             cursor: pointer;
@@ -103,64 +102,70 @@
         .chocolate { background: #7b3f00; }
         .gris-oxford { background: #666; }
         .blanco { background: #fff; border: 1px solid #000; }
+        .rojo { background: #ff0000; }
     </style>
 </head>
 <body>
     <header id="header">
-        <br>
         <h1>CUBOS</h1>
         <div class="nav">
             <button onclick="history.back()" class="back-button">⬅</button>
             <a href="contacto.html">Contacto</a>
-            <a href="comentarios.html">Comentarios</a
+            <a href="comentarios.html">Comentarios</a>
+            <a href="carrito.html" class="cart-link">🛒 <span id="cart-count">0</span></a>
         </div>
     </header>
-<div class="image-container">
-    <h2>Vista de las macetas</h2>
-    <img src="maceta4.png" alt="Maceta 1">
-    
-</div>
+
+    <div class="image-container">
+        <h2>Vista de las macetas</h2>
+        <img id="product-image" src="negro2.png" alt="Maceta 1">
+    </div>
+
     <div id="product-info">
         <h2>Selecciona la medida:</h2>
         <div class="sizes">
-            <span class="size-option">20cm x 20cm</span>
-            <span class="size-option">25cm x 25cm</span>
-            <span class="size-option">30cm x 30cm</span>
-            <span class="size-option">35cm x 35cm</span>
+            <span class="size-option">45cm x 20cm</span>
+            <span class="size-option">60cm x 25cm</span>
+            <span class="size-option">70cm x 32cm</span>
         </div>
 
         <h2>Selecciona el color:</h2>
         <div class="colors">
-            <span class="color-option"><span class="color-box negro"></span> Negro</span>
-            <span class="color-option"><span class="color-box chocolate"></span> Chocolate</span>
-            <span class="color-option"><span class="color-box gris-oxford"></span> Gris Oxford</span>
-            <span class="color-option"><span class="color-box blanco"></span> Blanco</span>
+            <span class="color-option" data-image="negro2.png"><span class="color-box negro"></span> Negro</span>
+            <span class="color-option" data-image="cafe2.png"><span class="color-box chocolate"></span> Chocolate</span>
+            <span class="color-option" data-image="gris2.png"><span class="color-box gris-oxford"></span> Gris Oxford</span>
+            <span class="color-option" data-image="blanco2.png"><span class="color-box blanco"></span> Blanco</span>
+            <span class="color-option" data-image="rojo2.png"><span class="color-box rojo"></span> Rojo</span>
         </div>
-        <br>
 
-        <button id="add-to-cart">Agregar al carrito</button>
+        <button id="add-to-cart" class="cart-btn">Agregar al carrito</button>
     </div>
 
     <script>
         let selectedSize = "";
         let selectedColor = "";
 
+        // Manejo de selección de tamaño
         document.querySelectorAll(".size-option").forEach(option => {
             option.addEventListener("click", () => {
                 document.querySelectorAll(".size-option").forEach(opt => opt.classList.remove("selected"));
                 option.classList.add("selected");
-                selectedSize = option.textContent;
+                selectedSize = option.textContent.trim();
             });
         });
 
+        // Manejo de selección de color
         document.querySelectorAll(".color-option").forEach(option => {
             option.addEventListener("click", () => {
                 document.querySelectorAll(".color-option").forEach(opt => opt.classList.remove("selected"));
                 option.classList.add("selected");
                 selectedColor = option.textContent.trim();
+                
+                document.getElementById("product-image").src = option.getAttribute("data-image");
             });
         });
 
+        // Agregar al carrito
         document.getElementById("add-to-cart").addEventListener("click", () => {
             if (!selectedSize || !selectedColor) {
                 alert("Por favor, selecciona tamaño y color.");
@@ -168,12 +173,27 @@
             }
 
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cart.push({ name: "Maceta Cubo", size: selectedSize, color: selectedColor, price: 450, quantity: 1 });
+            cart.push({ 
+                name: "Maceta Cilindro", 
+                size: selectedSize, 
+                color: selectedColor, 
+                price: 450, 
+                quantity: 1 
+            });
             localStorage.setItem("cart", JSON.stringify(cart));
 
             alert("Producto agregado al carrito.");
-            window.location.href = "carrito.html";
+            updateCartCount();
         });
+
+        // Actualizar contador del carrito
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            document.getElementById("cart-count").textContent = cart.length;
+        }
+
+        updateCartCount();
     </script>
+
 </body>
 </html>
