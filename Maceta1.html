@@ -5,93 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sonoras - Macetas de Fibra de Vidrio</title>
     <style>
-  body {
-    font-family: Arial, sans-serif;
-    background: url('7f222312b94457464ec0bf446fcad1ec.jpg') no-repeat center center fixed;
-    background-size: 100% 100%;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
-
-.image-container {
-    width: 80%;
-    margin: 20px auto;
-    text-align: center;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-}
-
-.image-container img {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    border-radius: 10px;
-}
-
+        body {
+            font-family: Arial, sans-serif;
+            background: url('7f222312b94457464ec0bf446fcad1ec.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
             text-align: center;
         }
 
-        .back-button {
-            background: none;
-            border: none;
+        .image-container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+
+        .image-container img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .cart-btn {
+            background-color: #2E8B57;
             color: white;
-            font-size: 30px;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
-            margin-right: 5px;
-            transition: color 0.3s;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
-       
-
-        @keyframes bordure {
-            0% {
-                width: 0px;
-                height: 0px;
-                opacity: 0;
-            }
-            20% {
-                opacity: 1;
-            }
-            50% {
-                height: 250px;
-                width: 250px;
-            }
-            100% {
-                width: 250px;
-                height: 400px;
-                opacity: 1;
-            }
+        .cart-btn:hover {
+            background-color: #1E6B47;
+            transform: scale(1.05);
         }
-  .cart-btn {
-    background-color: #2E8B57;
-    color: white;
-    padding: 10px 15px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s, transform 0.2s;
-}
 
-.cart-btn:hover {
-    background-color: #1E6B47;
-    transform: scale(1.05);
-}
+        #header {
+            background-color: #2c6e49;
+            color: white;
+            padding: 20px;
+        }
 
         .nav {
             position: absolute;
             top: 10px;
             right: 20px;
             font-size: 16px;
-        }
-
-        #header {
-            background-color: #2c6e49;
-            color: white; 
-            padding: 20px;
         }
 
         .nav a {
@@ -101,24 +66,10 @@
             transition: color 0.3s;
         }
 
-        #product-images {
-            position: relative;
-            width: 100%;
-            height: 300px;
-            overflow: hidden;
-        }
-
-        #product-images img {
-            width: 100%;
-            height: auto;
-            display: none;
-        }
-
-        #product-images img.active {
+        #product-image {
             display: block;
+            margin: auto;
         }
-
-
 
         .sizes, .colors {
             margin-top: 10px;
@@ -150,81 +101,91 @@
         .gris-oxford { background: #666; }
         .blanco { background: #fff; border: 1px solid #000; }
         .rojo { background: #ff0000; }
-        .naranja { background: #ff7f00; }
-        .amarillo { background: #ffff00; }
-        .terracota { background: #e2725b; }
-        .ocre { background: #cc7722; }
     </style>
 </head>
 <body>
     <header id="header">
-        <br>
         <h1>Sonoras</h1>
         <div class="nav">
-            <button onclick="history.back()" class="back-button">⬅</button>
             <a href="contacto.html">Contacto</a> 
             <a href="comentarios.html">Comentarios</a>
-            
         </div>
     </header>
+
     <div class="image-container">
-    <h2>Vista de las macetas</h2>
-    <img src="Maceta2.png" alt="Maceta 1">
-    
-</div>
-   <div id="product-info">
-    <h2>Selecciona la medida:</h2>
-    <div class="sizes">
-        <span class="size-option">45cm x 20cm</span>
-        <span class="size-option">60cm x 25cm</span>
-        <span class="size-option">70cm x 32cm</span>
+        <h2>Vista de las macetas</h2>
+        <img id="product-image" src="negro.png" alt="Maceta">
     </div>
-    
-    <h2>Selecciona el color:</h2>
-    <div class="colors">
-        <span class="color-option"><span class="color-box negro"></span> Negro</span>
-        <span class="color-option"><span class="color-box chocolate"></span> Chocolate</span>
-        <span class="color-option"><span class="color-box gris-oxford"></span> Gris Oxford</span>
-        <span class="color-option"><span class="color-box blanco"></span> Blanco</span>
-        <span class="color-option"><span class="color-box rojo"></span> Rojo</span>
+
+    <div id="product-info">
+        <h2>Selecciona la medida:</h2>
+        <div class="sizes">
+            <span class="size-option">45cm x 20cm</span>
+            <span class="size-option">60cm x 25cm</span>
+            <span class="size-option">70cm x 32cm</span>
+        </div>
+        
+        <h2>Selecciona el color:</h2>
+        <div class="colors">
+            <span class="color-option"><span class="color-box negro"></span> Negro</span>
+            <span class="color-option"><span class="color-box chocolate"></span> Chocolate</span>
+            <span class="color-option"><span class="color-box gris-oxford"></span> Gris Oxford</span>
+            <span class="color-option"><span class="color-box blanco"></span> Blanco</span>
+            <span class="color-option"><span class="color-box rojo"></span> Rojo</span>
+        </div>
+        
+        <button id="add-to-cart" class="cart-btn">Agregar al carrito</button>
     </div>
-    
-    <button id="add-to-cart" class="cart-btn">Agregar al carrito</button>
-</div>
 
-<script>
-    let selectedSize = "";
-let selectedColor = "";
+    <script>
+        let selectedSize = "";
+        let selectedColor = "";
 
-document.querySelectorAll(".size-option").forEach(option => {
-    option.addEventListener("click", () => {
-        document.querySelectorAll(".size-option").forEach(opt => opt.classList.remove("selected"));
-        option.classList.add("selected");
-        selectedSize = option.textContent;
-    });
-});
+        const colorImages = {
+            "Negro": "negro.png",
+            "Chocolate": "cafe.png",
+            "Gris Oxford": "gris.png",
+            "Blanco": "blanco.png",
+            "Rojo": "rojo.png"
+        };
 
-document.querySelectorAll(".color-option").forEach(option => {
-    option.addEventListener("click", () => {
-        document.querySelectorAll(".color-option").forEach(opt => opt.classList.remove("selected"));
-        option.classList.add("selected");
-        selectedColor = option.textContent.trim();
-    });
-});
+        document.querySelectorAll(".size-option").forEach(option => {
+            option.addEventListener("click", () => {
+                document.querySelectorAll(".size-option").forEach(opt => opt.classList.remove("selected"));
+                option.classList.add("selected");
+                selectedSize = option.textContent;
+            });
+        });
 
-document.getElementById("add-to-cart").addEventListener("click", () => {
-    if (!selectedSize || !selectedColor) {
-        alert("Por favor, selecciona tamaño y color.");
-        return;
-    }
+        document.querySelectorAll(".color-option").forEach(option => {
+            option.addEventListener("click", () => {
+                document.querySelectorAll(".color-option").forEach(opt => opt.classList.remove("selected"));
+                option.classList.add("selected");
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart.push({ name: "Maceta Sonora", size: selectedSize, color: selectedColor, price: 350, quantity: 1 });
-    localStorage.setItem("cart", JSON.stringify(cart));
+                selectedColor = option.innerText.trim();
+                const newImageSrc = colorImages[selectedColor];
 
-    alert("Producto agregado al carrito.");
-    window.location.href = "carrito.html"; 
-});
-</script>
+                if (newImageSrc) {
+                    document.getElementById("product-image").src = newImageSrc;
+                } else {
+                    document.getElementById("product-image").src = "Maceta2.png"; // Imagen por defecto
+                }
+            });
+        });
+
+        document.getElementById("add-to-cart").addEventListener("click", () => {
+            if (!selectedSize || !selectedColor) {
+                alert("Por favor, selecciona tamaño y color.");
+                return;
+            }
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push({ name: "Maceta Sonora", size: selectedSize, color: selectedColor, price: 350, quantity: 1 });
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            alert("Producto agregado al carrito.");
+            window.location.href = "carrito.html";
+        });
+    </script>
 </body>
 </html>
