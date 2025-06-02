@@ -13,6 +13,19 @@
             padding: 0;
             text-align: center;
         }
+        .back-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: color 0.3s;
+}
+
+.back-button:hover {
+    color: #d1ffd1;
+}
 
         .image-container {
             width: 80%;
@@ -105,8 +118,10 @@
 </head>
 <body>
     <header id="header">
+        <br>
         <h1>Sonoras</h1>
         <div class="nav">
+            <button onclick="history.back()" class="back-button">⬅</button>
             <a href="contacto.html">Contacto</a> 
             <a href="comentarios.html">Comentarios</a>
         </div>
