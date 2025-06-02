@@ -13,19 +13,15 @@
             padding: 0;
             text-align: center;
         }
-        .back-button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 30px;
-    cursor: pointer;
-    margin-right: 5px;
-    transition: color 0.3s;
-}
 
-.back-button:hover {
-    color: #d1ffd1;
-}
+        /* Ajustar el encabezado */
+        #header {
+            background-color: #2c6e49;
+            color: white;
+            padding: 20px;
+            font-size: 22px;
+            text-align: center;
+        }
 
         .image-container {
             width: 80%;
@@ -59,12 +55,6 @@
             transform: scale(1.05);
         }
 
-        #header {
-            background-color: #2c6e49;
-            color: white;
-            padding: 20px;
-        }
-
         .nav {
             position: absolute;
             top: 10px;
@@ -73,15 +63,11 @@
         }
 
         .nav a {
-            color: white;
+            color: black;
             text-decoration: none;
             margin: 0 10px;
+            font-size: 18px;
             transition: color 0.3s;
-        }
-
-        #product-image {
-            display: block;
-            margin: auto;
         }
 
         .sizes, .colors {
@@ -117,17 +103,17 @@
     </style>
 </head>
 <body>
-   <header id="header">
-    <h1>CILINDROS</h1>
-    <div class="nav">
-        <button onclick="history.back()" class="back-button">⬅</button>
-        <a href="contacto.html">Contacto</a> 
-        <a href="comentarios.html">Comentarios</a>
-        <a href="carrito.html" class="cart-link">
-            🛒 <span id="cart-count">0</span>
-        </a>
-    </div>
-   </header>
+
+    <header id="header">
+        <h1>CILINDROS</h1>
+        <div class="nav">
+            <button onclick="history.back()" class="back-button">⬅</button>
+            <a href="contacto.html">Contacto</a> 
+            <a href="comentarios.html">Comentarios</a>
+            <a href="carrito.html" class="cart-link">🛒 <span id="cart-count">0</span></a>
+        </div>
+    </header>
+
     <div class="image-container">
         <h2>Vista de las macetas</h2>
         <img id="product-image" src="negro.png" alt="Maceta">
@@ -143,15 +129,16 @@
         
         <h2>Selecciona el color:</h2>
         <div class="colors">
-            <span class="color-option"><span class="color-box negro"></span> Negro</span>
-            <span class="color-option"><span class="color-box chocolate"></span> Chocolate</span>
-            <span class="color-option"><span class="color-box gris-oxford"></span> Gris Oxford</span>
-            <span class="color-option"><span class="color-box blanco"></span> Blanco</span>
-            <span class="color-option"><span class="color-box rojo"></span> Rojo</span>
+            <span class="color-option" data-image="negro.png"><span class="color-box negro"></span> Negro</span>
+            <span class="color-option" data-image="cafe.png"><span class="color-box chocolate"></span> Chocolate</span>
+            <span class="color-option" data-image="gris.png"><span class="color-box gris-oxford"></span> Gris Oxford</span>
+            <span class="color-option" data-image="blanco.png"><span class="color-box blanco"></span> Blanco</span>
+            <span class="color-option" data-image="rojo.png"><span class="color-box rojo"></span> Rojo</span>
         </div>
         
         <button id="add-to-cart" class="cart-btn">Agregar al carrito</button>
     </div>
+
 <script>
 let selectedSize = "";
 let selectedColor = "";
@@ -171,16 +158,8 @@ document.querySelectorAll(".color-option").forEach(option => {
         document.querySelectorAll(".color-option").forEach(opt => opt.classList.remove("selected"));
         option.classList.add("selected");
         selectedColor = option.textContent.trim();
-
-        let imageMap = {
-            "Negro": "negro.png",
-            "Chocolate": "cafe.png",
-            "Gris Oxford": "gris.png",
-            "Blanco": "blanco.png"
-            "rojo": "rojo.png"
-        };
-
-        document.querySelector(".image-container img").src = imageMap[selectedColor];
+        
+        document.getElementById("product-image").src = option.getAttribute("data-image");
     });
 });
 
@@ -195,16 +174,15 @@ document.getElementById("add-to-cart").addEventListener("click", () => {
     localStorage.setItem("cart", JSON.stringify(cart));
 
     alert("Producto agregado al carrito.");
-    
-
     updateCartCount();
 });
+
 function updateCartCount() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     document.getElementById("cart-count").textContent = cart.length;
 }
 updateCartCount();
-            </script>
+</script>
 
 </body>
 </html>
