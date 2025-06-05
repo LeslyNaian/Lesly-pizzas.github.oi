@@ -3,10 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario Verde</title>
+    <title>Formulario con EmailJS</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("hnPxONMLo_rLfOzz0"); 
+        })();
+
+        function enviarFormulario(event) {
+            event.preventDefault();
+
+            emailjs.sendForm("service_lami5z4", "template_ub8zdf7", event.target)
+            .then(() => {
+                alert("¡Mensaje enviado con éxito!");
+                document.getElementById("comentario-form").reset();
+            }, (error) => {
+                alert("Hubo un error. Intenta nuevamente.");
+                console.log("Error:", error);
+            });
+        }
+    </script>
     <style>
         body {
-            background-image: url('d36aca6439dd1f4e68a8728832f09c91.jpg'); 
+            background-image: url('plantas.jpg'); 
             background-size: cover;
             background-position: center;
             font-family: Arial, sans-serif;
@@ -75,7 +94,7 @@
 <body>
     <div class="formulario">
         <h2>COMENTARIOS</h2>
-        <form action="https://formspree.io/f/mjkweqgz" method="POST">
+        <form id="comentario-form" onsubmit="enviarFormulario(event)">
             <input type="text" name="nombre" placeholder="Nombre" required>
             <input type="email" name="email" placeholder="Correo electrónico" required>
             <textarea name="comentario" placeholder="Escribe tu comentario aquí..." required></textarea>
