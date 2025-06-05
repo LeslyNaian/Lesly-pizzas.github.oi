@@ -3,26 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario con EmailJS</title>
+    <title>Formulario Verde con EmailJS</title>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        (function(){
-            emailjs.init("hnPxONMLo_rLfOzz0"); 
-        })();
-
-        function enviarFormulario(event) {
-            event.preventDefault();
-
-            emailjs.sendForm("service_lami5z4", "template_ub8zdf7", event.target)
-            .then(() => {
-                alert("¡Mensaje enviado con éxito!");
-                document.getElementById("comentario-form").reset();
-            }, (error) => {
-                alert("Hubo un error. Intenta nuevamente.");
-                console.log("Error:", error);
-            });
-        }
-    </script>
     <style>
         body {
             background-image: url('plantas.jpg'); 
@@ -94,15 +76,39 @@
 <body>
     <div class="formulario">
         <h2>COMENTARIOS</h2>
-        <form id="comentario-form" onsubmit="enviarFormulario(event)">
-            <input type="text" name="nombre" placeholder="Nombre" required>
-            <input type="email" name="email" placeholder="Correo electrónico" required>
-            <textarea name="comentario" placeholder="Escribe tu comentario aquí..." required></textarea>
+        <form id="contact-form">
+            <input type="text" id="nombre" placeholder="Nombre" required>
+            <input type="email" id="email" placeholder="Correo electrónico" required>
+            <textarea id="comentario" placeholder="Escribe tu comentario aquí..." required></textarea>
             <div class="btn-container">
-                <button type="submit">Enviar</button>
+                <button type="button" onclick="enviarCorreo()">Enviar</button>
                 <button type="button" class="back-btn" onclick="history.back()">Atrás</button>
             </div>
         </form>
     </div>
+
+    <script>
+        emailjs.init("hnPxONMLo_rLfOzz0");
+
+        function enviarCorreo() {
+            const serviceID = "service_lami5z4"; 
+            const templateID = "template_ub8zdf7";
+
+            const params = {
+                nombre: document.getElementById("nombre").value,
+                email: document.getElementById("email").value,
+                comentario: document.getElementById("comentario").value
+            };
+
+            emailjs.send(serviceID, templateID, params)
+                .then(response => {
+                    alert("¡Mensaje enviado correctamente!");
+                })
+                .catch(error => {
+                    alert("Hubo un error al enviar el mensaje.");
+                    console.error(error);
+                });
+        }
+    </script>
 </body>
 </html>
