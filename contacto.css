@@ -9,7 +9,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-100vh;
+    height: 100vh;
     box-sizing: border-box;
 }
 
@@ -146,4 +146,4 @@ ul.details-list li {
 
 .footer-links a:hover {
     color: #218838;
-}
+    }
