@@ -1,16 +1,11 @@
-/* Se eliminaron las animaciones @keyframes para coincidir con el estilo más estático del segundo archivo. */
-
 body {
-    /* Estilos de layout y fondo tomados del segundo archivo */
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 20px; /* Añadido un padding para que el contenedor no pegue a los bordes en pantallas pequeñas */
-    background-image: url('d36aca6439dd1f4e68a8728832f09c91.jpg'); 
+    padding: 20px;
+    background-image: url('d36aca6439dd1f4e68a8728832f09c91.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Mantenemos 'fixed' del original si se desea */
-    
-    /* Centrado de contenido como en el segundo archivo */
+    background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,27 +13,23 @@ body {
     box-sizing: border-box;
 }
 
-/* El .container ahora actúa como el bloque principal, similar a .formulario */
 .container {
     width: 95%;
-    max-width: 750px; /* Un poco más ancho para albergar el contenido original */
+    max-width: 750px;
     margin: auto;
     padding: 40px;
     text-align: center;
-    
-    /* Estilos de fondo y borde del segundo archivo */
-    background-color: rgba(212, 237, 218, 0.95); /* #d4edda con un poco de transparencia */
+    background-color: rgba(212, 237, 218, 0.95);
     border: 1px solid #28a745;
-    border-radius: 8px; /* Un radio unificado */
+    border-radius: 8px;
     box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
     box-sizing: border-box;
 }
 
 .header {
-    /* Se elimina el fondo para integrarlo en el contenedor */
-    padding: 0 0 10px 0;
+    padding-bottom: 10px;
     text-align: center;
-    color: #155724; /* Color de título del segundo archivo */
+    color: #155724;
     font-size: 28px;
     font-weight: bold;
 }
@@ -50,7 +41,6 @@ body {
 }
 
 .nav a {
-    /* Color de enlace que combina con la nueva paleta */
     color: #28a745;
     text-decoration: none;
     font-size: 18px;
@@ -60,17 +50,16 @@ body {
 }
 
 .nav a:hover {
-    color: #218838; /* Color hover del botón */
+    color: #218838;
 }
 
 .description {
-    /* Se elimina el fondo propio para usar el del .container */
     font-size: 18px;
     max-width: 700px;
     margin: auto;
     padding: 15px;
-    color: black; /* Color de texto como en los inputs del segundo archivo */
-    font-weight: normal; /* Se quita el bold para diferenciarlo del título */
+    color: black;
+    font-weight: normal;
 }
 
 .image-container {
@@ -82,23 +71,20 @@ body {
 }
 
 .image-container img {
-    width: 200px; /* Ajustamos el tamaño para que quepan mejor */
+    width: 200px;
     height: auto;
-    border-radius: 5px; /* Radio de borde unificado */
-    border: 2px solid #28a745; /* Borde con el color principal */
+    border-radius: 5px;
+    border: 2px solid #28a745;
     box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
     transition: transform 0.3s, box-shadow 0.3s;
-    
-    /* Se elimina la animación 'bounce' */
 }
 
 .image-container img:hover {
-    transform: scale(1.05); /* Un hover más sutil */
+    transform: scale(1.05);
     box-shadow: 0px 6px 12px rgba(0,0,0,0.3);
 }
 
 .button {
-    /* Estilos de botón tomados directamente del segundo archivo */
     display: inline-block;
     margin-top: 20px;
     padding: 15px 30px;
@@ -117,3 +103,28 @@ body {
     background-color: #218838;
     transform: scale(1.05);
 }
+
+.linea-verde {
+    width: 100%;
+    height: 4px;
+    background-color: #28a745;
+    margin-top: 30px;
+}
+
+.footer-links {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.footer-links a {
+    color: #28a745;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-links a:hover {
+    color: #218838;
+    }
