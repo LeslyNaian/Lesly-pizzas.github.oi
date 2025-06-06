@@ -1,4 +1,4 @@
- body {
+body {
     background-image: url('d36aca6439dd1f4e68a8728832f09c91.jpg'); 
     background-size: cover;
     background-position: center;
@@ -14,6 +14,8 @@
     padding: 60px;
     width: 95%;
     max-width: 600px;
+    background-color: #28a745; /* Cuadro verde en la parte superior */
+    border-radius: 10px;
 }
 
 input, textarea {
@@ -24,12 +26,17 @@ input, textarea {
     padding: 15px;
 }
 
+input::placeholder, textarea::placeholder {
+    color: white; /* Letras de nombre, email y comentarios en blanco */
+}
+
 textarea {
     min-height: 150px;
 }
 
 h2 {
-    color: black;
+    color: #155724;
+    margin-bottom: 20px;
 }
 
 input, textarea, button {
@@ -73,7 +80,22 @@ button:hover {
     background-color: #c82333;
 }
 
-h2 {
-    color: #155724;
-    margin-bottom: 20px;
+/* Botones de navegación */
+.nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.nav-buttons a {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.nav-buttons a:hover {
+    background-color: #218838;
 }
