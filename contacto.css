@@ -1,16 +1,16 @@
  body {
-            background-image: url('d36aca6439dd1f4e68a8728832f09c91.jpg'); 
-            background-size: cover;
-            background-position: center;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        
-        .formulario {
+    background-image: url('d36aca6439dd1f4e68a8728832f09c91.jpg'); 
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.formulario {
     padding: 60px;
     width: 95%;
     max-width: 600px;
@@ -19,7 +19,7 @@
 input, textarea {
     background-color: #d4edda;
     border: 1px solid #28a745;
-    color: white;
+    color: black; /* Texto negro */
     font-size: 18px;
     padding: 15px;
 }
@@ -31,46 +31,49 @@ textarea {
 h2 {
     color: black;
 }
-        input, textarea, button {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
 
-        .btn-container {
-            display: flex;
-            justify-content: space-between;
-        }
+input, textarea, button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
 
-        button {
-            background-color: #28a745;
-            color: white;
-            cursor: pointer;
-            border: none;
-            font-size: 16px;
-            flex: 1;
-            margin: 5px;
-            transition: background-color 0.3s;
-        }
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: #28a745; /* Cuadro verde */
+    padding: 10px;
+    border-radius: 5px;
+}
 
-        button:hover {
-            background-color: #218838;
-        }
+button {
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    flex: 1;
+    margin: 5px;
+    transition: background-color 0.3s;
+}
 
-        .back-btn {
-            background-color: #dc3545;
-        }
+button:hover {
+    background-color: #218838;
+}
 
-        .back-btn:hover {
-            background-color: #c82333;
-        }
+.back-btn {
+    background-color: #dc3545;
+}
 
-        h2 {
-            color: #155724;
-            margin-bottom: 20px;
-        }
+.back-btn:hover {
+    background-color: #c82333;
+}
+
+h2 {
+    color: #155724;
+    margin-bottom: 20px;
 }
