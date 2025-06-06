@@ -12,6 +12,51 @@ body {
     height: 100vh;
     box-sizing: border-box;
 }
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos */
+    width: 100%;
+    max-width: 400px; /* Ajusta el ancho del formulario */
+    margin: auto;
+}
+
+label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input, textarea {
+    width: 100%; /* Hace que los inputs ocupen todo el ancho disponible */
+    padding: 10px;
+    border: 2px solid #28a745;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 150px; /* Hace que el cuadro de comentarios sea más grande */
+    resize: none;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px 20px;
+    background-color: #28a745;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+}
 
 .top-bar {
     width: 100%;
