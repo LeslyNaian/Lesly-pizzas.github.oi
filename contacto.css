@@ -1,101 +1,119 @@
+/* Se eliminaron las animaciones @keyframes para coincidir con el estilo más estático del segundo archivo. */
+
 body {
+    /* Estilos de layout y fondo tomados del segundo archivo */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px; /* Añadido un padding para que el contenedor no pegue a los bordes en pantallas pequeñas */
     background-image: url('d36aca6439dd1f4e68a8728832f09c91.jpg'); 
     background-size: cover;
     background-position: center;
-    font-family: Arial, sans-serif;
+    background-attachment: fixed; /* Mantenemos 'fixed' del original si se desea */
+    
+    /* Centrado de contenido como en el segundo archivo */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-.formulario {
-    padding: 60px;
-    width: 95%;
-    max-width: 600px;
-    background-color: #28a745; /* Cuadro verde en la parte superior */
-    border-radius: 10px;
-}
-
-input, textarea {
-    background-color: #d4edda;
-    border: 1px solid #28a745;
-    color: black; /* Texto negro */
-    font-size: 18px;
-    padding: 15px;
-}
-
-input::placeholder, textarea::placeholder {
-    color: white; /* Letras de nombre, email y comentarios en blanco */
-}
-
-textarea {
-    min-height: 150px;
-}
-
-h2 {
-    color: #155724;
-    margin-bottom: 20px;
-}
-
-input, textarea, button {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    min-height: 100vh;
     box-sizing: border-box;
 }
 
-.btn-container {
-    display: flex;
-    justify-content: space-between;
-    background-color: #28a745; /* Cuadro verde */
-    padding: 10px;
-    border-radius: 5px;
+/* El .container ahora actúa como el bloque principal, similar a .formulario */
+.container {
+    width: 95%;
+    max-width: 750px; /* Un poco más ancho para albergar el contenido original */
+    margin: auto;
+    padding: 40px;
+    text-align: center;
+    
+    /* Estilos de fondo y borde del segundo archivo */
+    background-color: rgba(212, 237, 218, 0.95); /* #d4edda con un poco de transparencia */
+    border: 1px solid #28a745;
+    border-radius: 8px; /* Un radio unificado */
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+    box-sizing: border-box;
 }
 
-button {
-    background-color: #28a745;
-    color: white;
-    cursor: pointer;
-    border: none;
-    font-size: 16px;
-    flex: 1;
-    margin: 5px;
-    transition: background-color 0.3s;
+.header {
+    /* Se elimina el fondo para integrarlo en el contenedor */
+    padding: 0 0 10px 0;
+    text-align: center;
+    color: #155724; /* Color de título del segundo archivo */
+    font-size: 28px;
+    font-weight: bold;
 }
 
-button:hover {
-    background-color: #218838;
+.nav {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
-.back-btn {
-    background-color: #dc3545;
-}
-
-.back-btn:hover {
-    background-color: #c82333;
-}
-
-/* Botones de navegación */
-.nav-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.nav-buttons a {
+.nav a {
+    /* Color de enlace que combina con la nueva paleta */
+    color: #28a745;
     text-decoration: none;
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    font-size: 18px;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
 }
 
-.nav-buttons a:hover {
+.nav a:hover {
+    color: #218838; /* Color hover del botón */
+}
+
+.description {
+    /* Se elimina el fondo propio para usar el del .container */
+    font-size: 18px;
+    max-width: 700px;
+    margin: auto;
+    padding: 15px;
+    color: black; /* Color de texto como en los inputs del segundo archivo */
+    font-weight: normal; /* Se quita el bold para diferenciarlo del título */
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.image-container img {
+    width: 200px; /* Ajustamos el tamaño para que quepan mejor */
+    height: auto;
+    border-radius: 5px; /* Radio de borde unificado */
+    border: 2px solid #28a745; /* Borde con el color principal */
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    
+    /* Se elimina la animación 'bounce' */
+}
+
+.image-container img:hover {
+    transform: scale(1.05); /* Un hover más sutil */
+    box-shadow: 0px 6px 12px rgba(0,0,0,0.3);
+}
+
+.button {
+    /* Estilos de botón tomados directamente del segundo archivo */
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 30px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.button:hover {
     background-color: #218838;
+    transform: scale(1.05);
 }
