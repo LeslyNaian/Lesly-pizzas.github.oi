@@ -151,42 +151,48 @@
     }
 
     function checkout() {
-        document.getElementById("loading-container").style.display = "block";
+    document.getElementById("loading-container").style.display = "block";
 
-        setTimeout(() => {
-            document.getElementById("loading-container").style.display = "none";
+    setTimeout(() => {
+        document.getElementById("loading-container").style.display = "none";
 
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-            if (cart.length === 0) {
-                alert("⚠️ No hay productos en el carrito.");
-                return;
-            }
+        if (cart.length === 0) {
+            alert("⚠️ No hay productos en el carrito.");
+            return;
+        }
 
-            let userName = prompt("📝 Ingresa tu nombre:");
-            let userCard = prompt("💳 Ingresa tu número de tarjeta (16 dígitos):");
-            let userAddress = prompt("🏠 Ingresa tu dirección de facturación:");
-            let userPhone = prompt("📞 Ingresa tu número de contacto:");
+        let userName, userCard, userAddress, userPhone;
 
-            if (!userName || !userCard || !userAddress || !userPhone || userCard.length !== 16 || isNaN(userCard)) {
-                alert("⚠️ Pago cancelado. Todos los campos deben completarse correctamente.");
-                return;
-            }
+        // Función para solicitar datos con validaciones
+        function askForData(message, validationFn) {
+            let input;
+            do {
+                input = prompt(message);
+            } while (!validationFn(input));
+            return input;
+        }
 
-            let paymentDetails = `
-                🏦 Método de Pago: Transferencia / Tarjeta de Crédito
-                👤 Nombre: ${userName}
-                💳 Número de Tarjeta: **** **** **** ${userCard.slice(-4)}
-                🏠 Dirección de Facturación: ${userAddress}
-                📞 Contacto: ${userPhone}
-                💰 Total a pagar: MXN$${cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}
-            `;
+        userName = askForData("📝 Ingresa tu nombre:", input => input && input.trim().length > 2);
+        userCard = askForData("💳 Ingresa tu número de tarjeta (16 dígitos):", input => input && input.length === 16 && !isNaN(input));
+        userAddress = askForData("🏠 Ingresa tu dirección de facturación:", input => input && input.trim().length > 5);
+        userPhone = askForData("📞 Ingresa tu número de contacto (10 dígitos):", input => input && input.length === 10 && !isNaN(input));
 
-            alert("✅ Pago realizado con éxito!\n\n" + paymentDetails);
-            localStorage.removeItem("cart");
-            location.reload();
-        }, 3000);
-    }
+        let paymentDetails = `
+            🏦 Método de Pago: Transferencia / Tarjeta de Crédito
+            👤 Nombre: ${userName}
+            💳 Número de Tarjeta: **** **** **** ${userCard.slice(-4)}
+            🏠 Dirección de Facturación: ${userAddress}
+            📞 Contacto: ${userPhone}
+            💰 Total a pagar: MXN$${cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}
+        `;
+
+        alert("✅ Pago realizado con éxito!\n\n" + paymentDetails);
+        local("cart");
+        location.reload();
+    }, 3000);
+}
 
     function generatePDF() {
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
