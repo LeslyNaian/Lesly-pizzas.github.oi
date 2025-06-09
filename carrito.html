@@ -159,6 +159,25 @@
                 location.reload();
             }, 3000);
         }
+        function checkout() {
+    document.getElementById("loading-container").style.display = "block";
+    setTimeout(() => {
+        document.getElementById("loading-container").style.display = "none";
+
+        let paymentDetails = `
+            🏦 Método de Pago: Transferencia / Tarjeta de Crédito
+            💳 Número de Tarjeta: **** **** **** 1234
+            🏠 Dirección de Facturación: Calle Ejemplo #123, CDMX
+            📞 Contacto: 55-1234-5678
+            💰 Total a pagar: MXN$${cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}
+        `;
+
+        alert(paymentDetails);
+
+        localStorage.removeItem("cart");
+        location.reload();
+    }, 3000);
+}
 
         function generatePDF() {
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
