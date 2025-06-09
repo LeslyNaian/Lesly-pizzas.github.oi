@@ -203,9 +203,6 @@
             doc.text(content, 10, 10);
             doc.save("Carrito_IDYMAN.pdf");
         }
-    </script>
-</body>
-</html>
         function generatePDF() {
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
             const { jsPDF } = window.jspdf;
