@@ -191,9 +191,9 @@
             } else {
                 cart.forEach((item, index) => {
                     content += `${index + 1}. ${item.name}\n`;
-                    content += `📏 Tamaño: ${item.size}\n`;
-                    content += `🎨 Color: ${item.color}\n`;
-                    content += `💰 Precio: MXN$${item.price.toFixed(2)} x ${item.quantity} = MXN$${(item.price * item.quantity).toFixed(2)}\n\n`;
+                    content += ` Tamaño: ${item.size}\n`;
+                    content += ` Color: ${item.color}\n`;
+                    content += ` Precio: MXN$${item.price.toFixed(2)} x ${item.quantity} = MXN$${(item.price * item.quantity).toFixed(2)}\n\n`;
                 });
 
                 content += `Total: MXN$${cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}\n`;
