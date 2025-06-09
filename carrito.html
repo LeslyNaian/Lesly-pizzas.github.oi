@@ -159,6 +159,167 @@
                 location.reload();
             }, 3000);
         }
+       <!DOCTYPE html>
+<html lang="es">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - IDYMAN</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('7f222312b94457464ec0bf446fcad1ec.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-align: center;
+        }
+
+        .header {
+            background-color: #2c6e49;
+            padding: 20px;
+            position: relative;
+        }
+
+        .header h1 {
+            margin: 0;
+            color: white;
+        }
+
+        .nav {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 18px;
+        }
+
+        .cart-container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+            width: 80%;
+            margin: 20px auto;
+            color: black;
+        }
+
+        button {
+            background: linear-gradient(to right, #2E8B57, #3CB371);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(46, 139, 87, 0.8);
+        }
+
+        .delete-btn, .pay-cart, .download-pdf {
+            background-color: #2E8B57;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .loading-circle {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #fff;
+            border-top: 5px solid #2E8B57;
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+            display: none;
+            margin: auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>🛒 Carrito de Compras</h1>
+        <div class="nav">
+            <a href="Principal .html">Volver a la tienda</a>
+            <a href="comentarios.html">Comentarios</a>
+        </div>
+    </div>
+
+    <div class="cart-container">
+        <h2>Tu selección de macetas</h2>
+        <div id="cart-items"></div>
+        <p id="cart-total"></p>
+        <button onclick="location.href='index.html'">Principal</button>
+        <button onclick="checkout()" class="pay-cart">Proceder al Pago</button>
+        <button onclick="generatePDF()" class="download-pdf">Descargar PDF</button>
+
+        <div id="loading-container">
+            <div class="loading-circle"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartContainer = document.getElementById("cart-items");
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = "<p>🛍️ No hay productos en tu carrito.</p>";
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                const itemDiv = document.createElement("div");
+                itemDiv.innerHTML = `
+                    <p><strong>${item.name}</strong><br>
+                    📏 Tamaño: ${item.size}<br>
+                    🎨 Color: ${item.color}<br>
+                    💰 Precio: MXN$${item.price.toFixed(2)} x ${item.quantity} = <strong>MXN$${(item.price * item.quantity).toFixed(2)}</strong><br>
+                    <button onclick="removeItem(${index})" class="delete-btn">Eliminar</button>
+                    </p><hr>`;
+                cartContainer.appendChild(itemDiv);
+            });
+
+            document.getElementById("cart-total").textContent = `Total general: MXN$${total.toFixed(2)}`;
+        });
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            location.reload();
+        }
+
+        function checkout() {
+            document.getElementById("loading-container").style.display = "block";
+
+            setTimeout(() => {
+                alert("Pago realizado con éxito!");
+                document.getElementById("loading-container").style.display = "none";
+                localStorage.removeItem("cart");
+                location.reload();
+            }, 3000);
+        }
         function checkout() {
     document.getElementById("loading-container").style.display = "block";
     setTimeout(() => {
@@ -179,6 +340,32 @@
     }, 3000);
 }
 
+        function generatePDF() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            let content = "🛒 Información del Carrito de Compras\n\n";
+
+            if (cart.length === 0) {
+                content += "No hay productos en el carrito.\n";
+            } else {
+                cart.forEach((item, index) => {
+                    content += `${index + 1}. ${item.name}\n`;
+                    content += ` Tamaño: ${item.size}\n`;
+                    content += ` Color: ${item.color}\n`;
+                    content += ` Precio: MXN$${item.price.toFixed(2)} x ${item.quantity} = MXN$${(item.price * item.quantity).toFixed(2)}\n\n`;
+                });
+
+                content += `Total: MXN$${cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}\n`;
+            }
+
+            doc.text(content, 10, 10);
+            doc.save("Carrito_IDYMAN.pdf");
+        }
+    </script>
+</body>
+</html>
         function generatePDF() {
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
             const { jsPDF } = window.jspdf;
