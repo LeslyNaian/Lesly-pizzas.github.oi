@@ -116,7 +116,7 @@
         </div>
     </div>
 
-    <script>
+   <script>
     document.addEventListener("DOMContentLoaded", () => {
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
         const cartContainer = document.getElementById("cart-items");
@@ -163,23 +163,15 @@
                 return;
             }
 
-            let userName, userCard, userAddress, userPhone;
+            let userName = prompt("📝 Ingresa tu nombre:");
+            let userCard = prompt("💳 Ingresa tu número de tarjeta (16 dígitos):");
+            let userAddress = prompt("🏠 Ingresa tu dirección de facturación:");
+            let userPhone = prompt("📞 Ingresa tu número de contacto:");
 
-            function askForData(message, validationFn) {
-                let input;
-                do {
-                    input = prompt(message);
-                    if (!validationFn(input)) {
-                        alert("⚠️ Error en el dato ingresado. Inténtalo nuevamente.");
-                    }
-                } while (!validationFn(input));
-                return input;
+            if (!userName || !userCard || !userAddress || !userPhone || userCard.length !== 16 || isNaN(userCard)) {
+                alert("⚠️ Pago cancelado. Todos los campos deben completarse correctamente.");
+                return;
             }
-
-            userName = askForData("📝 Ingresa tu nombre (mínimo 2 caracteres):", input => input && input.trim().length > 2);
-            userCard = askForData("💳 Ingresa tu número de tarjeta (exactamente 16 dígitos):", input => input && /^\d{16}$/.test(input));
-            userAddress = askForData("🏠 Ingresa tu dirección de facturación (mínimo 5 caracteres):", input => input && input.trim().length > 5);
-            userPhone = askForData("📞 Ingresa tu número de contacto (exactamente 10 dígitos):", input => input && /^\d{10}$/.test(input));
 
             let paymentDetails = `
                 🏦 Método de Pago: Transferencia / Tarjeta de Crédito
